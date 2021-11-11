@@ -2,6 +2,7 @@ class Vertice {
     constructor(nome, posicao) {
         this.nome = nome;
         this.posicao = posicao;
+        this.selecionado = false;
         this.arestas = [];
         this.grau;
         this.ePar;
@@ -9,6 +10,8 @@ class Vertice {
         this.temLoop;
         this.temArestasAdjacentesParalelas;
         this.vizinhanca;
+
+        this.atualizarArestas();
     }
 
     // Adiciona Uma Aresta
@@ -56,9 +59,16 @@ class Vertice {
         // Volta A Grossura Das Linhas Para O Padrão
         strokeWeight();
 
+        let corDoCirculoASerUsado;
+
         // Desenha O Circulo Do Vertice
-        stroke(corDoCirculo);
-        fill(corDoCirculo);
+        if (this.selecionado) {
+            corDoCirculoASerUsado = color(0,0,250);
+        } else {
+            corDoCirculoASerUsado = corDoCirculo;
+        }
+        stroke(corDoCirculoASerUsado);
+        fill(corDoCirculoASerUsado);
         circle(
             this.posicao.x,
             this.posicao.y,

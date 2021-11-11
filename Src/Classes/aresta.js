@@ -4,8 +4,6 @@ class Aresta {
         this.eDirecional = eDirecional;
         this.eLoop = primeiroVertice == segundoVertice;
 
-        console.log(this.extremidades);
-
         this.extremidades.forEach(extremidade => {
             extremidade.adicionarAresta(this);
         });

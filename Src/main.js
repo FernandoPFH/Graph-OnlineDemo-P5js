@@ -37,7 +37,8 @@ function draw() {
         document.body.style.cursor = "default";
     }
 
-    if (!estadoAtual.compararEscolha("AdicionarAresta")) {
+    if (!estadoAtual.compararEscolha("AdicionarAresta") && pontoClicadoParaCriacaoDeAresta) {
+        pontoClicadoParaCriacaoDeAresta.selecionado = false;
         pontoClicadoParaCriacaoDeAresta = null;
     }
 }
@@ -58,10 +59,12 @@ function mouseClicadoNoCanvas() {
         grafo.vertices.forEach(vertice => {
             if (vertice.mouseEstaEmCima(mouseX,mouseY)) {
                 if (!pontoClicadoParaCriacaoDeAresta) {
+                    vertice.selecionado = true;
                     pontoClicadoParaCriacaoDeAresta = vertice;
                 } else {
                     grafo.adicionarAresta(new Aresta(pontoClicadoParaCriacaoDeAresta,vertice,false));
 
+                    pontoClicadoParaCriacaoDeAresta.selecionado = false;
                     pontoClicadoParaCriacaoDeAresta = null;
                 }
             }
