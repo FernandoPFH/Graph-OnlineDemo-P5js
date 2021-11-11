@@ -43,3 +43,8 @@ canvas {
 .Modal-Conteudo {
     overflow-y: auto;
 }
+
+.Botao-Selecionado {
+    color: white;
+    background-color: blue;
+}

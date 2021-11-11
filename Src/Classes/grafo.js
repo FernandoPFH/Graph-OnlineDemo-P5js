@@ -19,6 +19,30 @@ class Grafo {
         this.atualizarOsAtributos();
     }
 
+    // Remove Um Vértice
+    removerVertice(vertice) {
+        let posicaoVerticeParaRetirar = this.vertices.indexOf(vertice);
+        if (posicaoVerticeParaRetirar > -1) {
+            this.vertices.splice(posicaoVerticeParaRetirar, 1);
+        }
+
+        let arestasParaRemover = [];
+        this.arestas.forEach(aresta => {
+            if (aresta.extremidades.includes(vertice)) {
+                arestasParaRemover.push(aresta);
+            }
+        });
+
+        arestasParaRemover.forEach(arestaparaRemover => {
+            let posicaoArestaParaRetirar = this.arestas.indexOf(arestaparaRemover);
+            if (posicaoArestaParaRetirar > -1) {
+                this.arestas.splice(posicaoArestaParaRetirar, 1);
+            }
+        });
+
+        this.atualizarOsAtributos();
+    }
+
     // Pode Ser Usado Para Os Tributos Dessa Classe
     atualizarOsAtributos() {
         this.nulo = this.arestas.length == 0;
@@ -68,4 +92,11 @@ class Grafo {
             vertice.desenhar();
         });
     }
+}
+
+function removerItemDoArray(array, item) { 
+    
+    return array.filter(function(elemento){ 
+        return elemento != item; 
+    });
 }

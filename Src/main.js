@@ -20,6 +20,7 @@ function setup() {
     grafo = new Grafo("",[],[]);
 
     estadoAtual = new Estado("AdicionarVertice");
+    document.getElementsByClassName("Cabecalho")[0].children[1].classList.add("Botao-Selecionado");
 }
 
 function draw() {
@@ -41,6 +42,12 @@ function mouseClicadoNoCanvas() {
         abrirModalAdicionarNomeVertice(createVector(mouseX,mouseY),grafo);
         ultimoEstado = estadoAtual.pegarEscolha();
         estadoAtual.trocaEscolha("NoMenu");
+    } else if (estadoAtual.compararEscolha("ExcluirObjetos") && grafo.vertices.some(vertice => vertice.mouseEstaEmCima(mouseX,mouseY))) {
+        grafo.vertices.forEach(vertice => {
+            if (vertice.mouseEstaEmCima(mouseX,mouseY)) {
+                grafo.removerVertice(vertice);
+            }
+        })
     }
 }
 
