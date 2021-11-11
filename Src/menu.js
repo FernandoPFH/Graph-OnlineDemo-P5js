@@ -12,6 +12,9 @@ function abrirModalAdicionarNomeVertice(posicao,grafo) {
     document.getElementById("ModalBackgroundAdicionarNomeVertice").style.display = "block";
     document.getElementById("ModalAdicionarNomeVertice").style.display = "block";
 
+    document.getElementById("ModalAdicionarNomeVerticeInput").focus();
+
+
     document.getElementById("ModalAdicionarNomeVerticeBotao").onclick = () => {
         vertice = new Vertice(document.getElementById("ModalAdicionarNomeVerticeInput").value,posicao);
         grafo.adicionarVertice(vertice);

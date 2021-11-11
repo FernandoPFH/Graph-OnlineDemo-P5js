@@ -3,6 +3,12 @@ class Aresta {
         this.extremidades = [primeiroVertice,segundoVertice];
         this.eDirecional = eDirecional;
         this.eLoop = primeiroVertice == segundoVertice;
+
+        console.log(this.extremidades);
+
+        this.extremidades.forEach(extremidade => {
+            extremidade.adicionarAresta(this);
+        });
     }
 
     eVizinho(primeiroVertice,segundoVertice) {

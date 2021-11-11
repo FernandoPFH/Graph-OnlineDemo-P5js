@@ -14,7 +14,7 @@ class Vertice {
     // Adiciona Uma Aresta
     adicionarAresta(aresta) {
         this.arestas.push(aresta);
-        atualizarArestas();
+        this.atualizarArestas();
     }
 
     // Atualiza As Informações Sobre As Arestas
@@ -38,7 +38,7 @@ class Vertice {
             }
 
             aresta.extremidades.forEach(extremidade => {
-                if (extremidade != self) {
+                if (extremidade != this) {
                     this.vizinhanca.add(extremidade);
                 }
             });

@@ -7,6 +7,9 @@ var grafo;
 var estadoAtual;
 var ultimoEstado;
 
+// Variaveis Para Guardar O Ponto Clicado Para Criar Aresta
+var pontoClicadoParaCriacaoDeAresta;
+
 // Variaveis Para Uso Durante Movimento Dos Pontos
 var pontoMexido;
 var offsetPontoMexido;
@@ -19,8 +22,7 @@ function setup() {
 
     grafo = new Grafo("",[],[]);
 
-    estadoAtual = new Estado("AdicionarVertice");
-    document.getElementsByClassName("Cabecalho")[0].children[1].classList.add("Botao-Selecionado");
+    estadoAtual = new Estado("NoMenu");
 }
 
 function draw() {
@@ -34,6 +36,10 @@ function draw() {
     } else {
         document.body.style.cursor = "default";
     }
+
+    if (!estadoAtual.compararEscolha("AdicionarAresta")) {
+        pontoClicadoParaCriacaoDeAresta = null;
+    }
 }
 
 // Função Chamada Quando Um Botão Do Mouse É Clicado No canvas
@@ -42,10 +48,22 @@ function mouseClicadoNoCanvas() {
         abrirModalAdicionarNomeVertice(createVector(mouseX,mouseY),grafo);
         ultimoEstado = estadoAtual.pegarEscolha();
         estadoAtual.trocaEscolha("NoMenu");
-    } else if (estadoAtual.compararEscolha("ExcluirObjetos") && grafo.vertices.some(vertice => vertice.mouseEstaEmCima(mouseX,mouseY))) {
+    } else if (estadoAtual.compararEscolha("ExcluirObjetos")) {
         grafo.vertices.forEach(vertice => {
             if (vertice.mouseEstaEmCima(mouseX,mouseY)) {
                 grafo.removerVertice(vertice);
+            }
+        })
+    } else if (estadoAtual.compararEscolha("AdicionarAresta")) {
+        grafo.vertices.forEach(vertice => {
+            if (vertice.mouseEstaEmCima(mouseX,mouseY)) {
+                if (!pontoClicadoParaCriacaoDeAresta) {
+                    pontoClicadoParaCriacaoDeAresta = vertice;
+                } else {
+                    grafo.adicionarAresta(new Aresta(pontoClicadoParaCriacaoDeAresta,vertice,false));
+
+                    pontoClicadoParaCriacaoDeAresta = null;
+                }
             }
         })
     }

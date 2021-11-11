@@ -15,6 +15,7 @@ class Grafo {
 
     // Adiciona Uma Aresta
     adicionarAresta(aresta) {
+        console.log(aresta);
         this.arestas.push(aresta);
         this.atualizarOsAtributos();
     }
