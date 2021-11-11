@@ -3,6 +3,7 @@ function fecharModalAdicionarNomeVertice() {
     document.getElementById("ModalAdicionarNomeVertice").style.display = "none";
 
     document.getElementById("ModalAdicionarNomeVerticeInput").value = "";
+    estadoAtual.trocaEscolha(ultimoEstado);
 }
 
 function abrirModalAdicionarNomeVertice(posicao,grafo) {
@@ -14,7 +15,6 @@ function abrirModalAdicionarNomeVertice(posicao,grafo) {
         grafo.adicionarVertice(vertice);
 
         fecharModalAdicionarNomeVertice();
-        estadoAtual.trocaEscolha(ultimoEstado);
     }
 }
 
@@ -24,4 +24,8 @@ function botaoAdicionarVertice() {
 
 function botaoAdicionarAresta() {
     estadoAtual.trocaEscolha("AdicionarAresta");
+}
+
+function botaoMoverVertice() {
+    estadoAtual.trocaEscolha("MoverVertice");
 }

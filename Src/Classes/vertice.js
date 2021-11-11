@@ -46,6 +46,11 @@ class Vertice {
         });
     }
 
+    // Checa Se O Mouse Está Em Cima Do Vertice
+    mouseEstaEmCima(mouseX,mouseY,tamanhoDoCirculo=25) {
+        return Math.abs(mouseX - this.posicao.x) < tamanhoDoCirculo/2 && Math.abs(mouseY - this.posicao.y) < tamanhoDoCirculo/2;
+    }
+
     // Desenhar O Vertice
     desenhar(corDoCirculo=color(255),tamanhoDoCirculo=25,corDoTexto=color(0),tamanhoDoTexto=15) {
         // Volta A Grossura Das Linhas Para O Padrão
