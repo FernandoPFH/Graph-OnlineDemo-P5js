@@ -4,10 +4,40 @@
         <script src="Src/Classes/vertice.js"></script>
         <script src="Src/Classes/aresta.js"></script>
         <script src="Src/Classes/grafo.js"></script>
+        <script src="Src/Classes/estado.js"></script>
+        <script src="Src/menu.js"></script>
         <script src="Src/main.js"></script>
         <link rel="stylesheet" href="Src/main.css">
+
+        <title>Grafo - Online Demo</title>
     </head>
     <body>
-        <main></main>
+        <div class="Cabecalho">
+            <h1 >
+                Grafo - Online Demo 
+            </h1>
+            <button onclick="botaoAdicionarVertice()">
+                + Vertice
+            </button>
+            <button onclick="botaoAdicionarAresta()">
+                + Aresta
+            </button>
+            <button>
+                MoverVertice
+            </button>
+            <button>
+                ExcluirObjetos
+            </button>
+        </div>
+        <div class="Modal-Background" onclick="fecharModalAdicionarNomeVertice()" id="ModalBackgroundAdicionarNomeVertice"></div>
+        <div class="Modal" id="ModalAdicionarNomeVertice">
+            <div class="Modal-Conteudo">
+                <div class="Modal-Titulo">
+                    <h1>Adicionar Nome Do Vertice:</h1>
+                    <input type="text" id="ModalAdicionarNomeVerticeInput">
+                    <button id="ModalAdicionarNomeVerticeBotao">Salvar</button>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

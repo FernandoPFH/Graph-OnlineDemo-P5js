@@ -71,6 +71,13 @@ class Vertice {
                 this.posicao.x-tamanhoDoTexto*this.nome.length/3,
                 this.posicao.y+tamanhoDoTexto/3
             );
+        } else {
+            // Desenha O Texto Do Vertice
+            text(
+                "...",
+                this.posicao.x-tamanhoDoTexto/3,
+                this.posicao.y+tamanhoDoTexto/3
+            );
         }
     }
 }
