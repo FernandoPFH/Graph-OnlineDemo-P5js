@@ -54,7 +54,13 @@ function mouseClicadoNoCanvas() {
             if (vertice.mouseEstaEmCima(mouseX,mouseY)) {
                 grafo.removerVertice(vertice);
             }
-        })
+        });
+        
+        grafo.arestas.forEach(aresta => {
+            if (aresta.mouseEstaEmCima(mouseX,mouseY)) {
+                grafo.removerAresta(aresta);
+            }
+        });
     } else if (estadoAtual.compararEscolha("AdicionarAresta")) {
         grafo.vertices.forEach(vertice => {
             if (vertice.mouseEstaEmCima(mouseX,mouseY)) {
@@ -62,7 +68,7 @@ function mouseClicadoNoCanvas() {
                     vertice.selecionado = true;
                     pontoClicadoParaCriacaoDeAresta = vertice;
                 } else {
-                    grafo.adicionarAresta(new Aresta(pontoClicadoParaCriacaoDeAresta,vertice,false));
+                    grafo.adicionarAresta(new Aresta(pontoClicadoParaCriacaoDeAresta,vertice,true));
 
                     pontoClicadoParaCriacaoDeAresta.selecionado = false;
                     pontoClicadoParaCriacaoDeAresta = null;
@@ -93,6 +99,14 @@ function mouseDragged() {
 function mouseReleased() {
     pontoMexido = null;
     offsetPontoMexido = null;
+}
+
+// Tira O Ponto Selecionado Se O Botão ESC É Precionado
+function keyPressed() {
+    if (keyCode === ESCAPE) {
+        pontoClicadoParaCriacaoDeAresta.selecionado = false;
+        pontoClicadoParaCriacaoDeAresta = null;
+    }
 }
 
 // Troca O Tamanho Do Canvas Quando O Tamanho Da Tela É Mudado

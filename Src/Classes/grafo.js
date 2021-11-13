@@ -43,6 +43,20 @@ class Grafo {
         this.atualizarOsAtributos();
     }
 
+    // Remove Uma Aresta
+    removerAresta(aresta) {
+        let posicaoArestaParaRetirar = this.arestas.indexOf(aresta);
+        if (posicaoArestaParaRetirar > -1) {
+            this.arestas.splice(posicaoArestaParaRetirar, 1);
+        }
+
+        aresta.extremidades.forEach(extremidade => {
+            extremidade.removerAresta(aresta)
+        });
+
+        this.atualizarOsAtributos();
+    }
+
     // Pode Ser Usado Para Os Tributos Dessa Classe
     atualizarOsAtributos() {
         this.nulo = this.arestas.length == 0;

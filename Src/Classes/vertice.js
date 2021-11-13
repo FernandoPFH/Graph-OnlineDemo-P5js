@@ -20,6 +20,15 @@ class Vertice {
         this.atualizarArestas();
     }
 
+    // Remover Uma Aresta
+    removerAresta(aresta) {
+        let posicaoArestaParaRetirar = this.arestas.indexOf(aresta);
+        if (posicaoArestaParaRetirar > -1) {
+            this.arestas.splice(posicaoArestaParaRetirar, 1);
+        }
+        this.atualizarArestas();
+    }
+
     // Atualiza As Informações Sobre As Arestas
     atualizarArestas() {
         this.grau = this.arestas.length;
