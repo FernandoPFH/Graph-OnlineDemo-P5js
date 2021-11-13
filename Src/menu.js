@@ -1,7 +1,6 @@
 // Fecha O Modal Usado Para Dar Nome Aos Vértices
 function fecharModalAdicionarNomeVertice() {
     document.getElementById("ModalBackgroundAdicionarNomeVertice").style.display = "none";
-    document.getElementById("ModalAdicionarNomeVertice").style.display = "none";
 
     document.getElementById("ModalAdicionarNomeVerticeInput").value = "";
     estadoAtual.trocaEscolha(ultimoEstado);
@@ -9,17 +8,53 @@ function fecharModalAdicionarNomeVertice() {
 
 // Abre O Modal Usado Para Dar Nome Aos Vértices
 function abrirModalAdicionarNomeVertice(posicao,grafo) {
-    document.getElementById("ModalBackgroundAdicionarNomeVertice").style.display = "block";
-    document.getElementById("ModalAdicionarNomeVertice").style.display = "block";
+    document.getElementById("ModalBackgroundAdicionarNomeVertice").style.display = "flex";
 
     document.getElementById("ModalAdicionarNomeVerticeInput").focus();
 
-
     document.getElementById("ModalAdicionarNomeVerticeBotao").onclick = () => {
-        vertice = new Vertice(document.getElementById("ModalAdicionarNomeVerticeInput").value,posicao);
-        grafo.adicionarVertice(vertice);
+        if (document.getElementById("ModalAdicionarNomeVerticeInput").value.length > 0) {
+            vertice = new Vertice(document.getElementById("ModalAdicionarNomeVerticeInput").value,posicao);
+            grafo.adicionarVertice(vertice);
+    
+            fecharModalAdicionarNomeVertice();
+        }
+    }
 
-        fecharModalAdicionarNomeVertice();
+    document.getElementById("ModalAdicionarNomeVerticeInput").onkeyup = () => {
+        if (key === "Enter" && document.getElementById("ModalAdicionarNomeVerticeInput").value.length > 0) {
+            vertice = new Vertice(document.getElementById("ModalAdicionarNomeVerticeInput").value,posicao);
+            grafo.adicionarVertice(vertice);
+    
+            fecharModalAdicionarNomeVertice();
+        }
+    }
+}
+
+// Fecha O Modal Usado Para Dar Direção A Aresta
+function fecharModalAdicionarAresta() {
+    document.getElementById("ModalBackgroundAdicionarAresta").style.display = "none";
+
+    if (pontoClicadoParaCriacaoDeAresta) {
+        pontoClicadoParaCriacaoDeAresta.selecionado = false;
+        pontoClicadoParaCriacaoDeAresta = null;
+    }
+
+    estadoAtual.trocaEscolha(ultimoEstado);
+}
+
+// Abre O Modal Usado Para Dar Direção A Aresta
+function abrirModalAdicionarAresta(verticeInicial,verticeFinal,grafo) {
+    document.getElementById("ModalBackgroundAdicionarAresta").style.display = "flex";
+
+
+    document.getElementById("ModalAdicionarArestaBotao").onclick = () => {
+        grafo.adicionarAresta(new Aresta(verticeInicial,verticeFinal,document.getElementById("ModalAdicionarArestaCheckBox").checked));
+
+        verticeInicial.selecionado = false;
+        verticeInicial = null;
+
+        fecharModalAdicionarAresta();
     }
 }
 
@@ -44,6 +79,11 @@ function botaoAdicionarAresta(referencia) {
     estadoAtual.trocaEscolha("AdicionarAresta");
     resetarCorDosBotoes(referencia);
     referencia.classList.add("Botao-Selecionado");
+}
+
+// Aumentar A Área Para Interagir Com Um CheckBox
+function selecionarCheckBox(elemento) {
+    elemento.getElementsByTagName('input')[0].checked = !elemento.getElementsByTagName('input')[0].checked;
 }
 
 // Troca O Estado Atual Para "MoverVertice" E As Cores Dos Botões

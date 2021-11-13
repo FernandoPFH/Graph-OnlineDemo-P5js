@@ -29,13 +29,32 @@
                 Excluir Objetos
             </button>
         </div>
-        <div class="Modal-Background" onclick="fecharModalAdicionarNomeVertice()" id="ModalBackgroundAdicionarNomeVertice"></div>
-        <div class="Modal" id="ModalAdicionarNomeVertice">
-            <div class="Modal-Conteudo">
-                <div class="Modal-Titulo">
-                    <h1>Adicionar Nome Do Vertice:</h1>
-                    <input type="text" id="ModalAdicionarNomeVerticeInput">
-                    <button id="ModalAdicionarNomeVerticeBotao">Salvar</button>
+        <div class="Modal-Background" onclick="fecharModalAdicionarNomeVertice()" id="ModalBackgroundAdicionarNomeVertice">
+            <div class="Modal">
+                <div class="Modal-Conteudo">
+                    <div class="Modal-Titulo">
+                        <h1>Adicionar Nome Do Vertice:</h1>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <input type="text" id="ModalAdicionarNomeVerticeInput" autocomplete="off">
+                        <button id="ModalAdicionarNomeVerticeBotao" >Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Modal-Background" onclick="fecharModalAdicionarAresta()" id="ModalBackgroundAdicionarAresta">
+            <div class="Modal" onclick="() => {console.log('teste')}">
+                <div class="Modal-Conteudo">
+                    <div class="Modal-Titulo">
+                        <h1>Adicionar Nome Do Vertice:</h1>
+                    </div>
+                    <div style="display: flex;flex-direction: column;">
+                        <div style="display: flex;flex-direction: row;" onclick="selecionarCheckBox(this)">
+                            <input type="checkbox" id="ModalAdicionarArestaCheckBox" style="width: auto;">
+                            <p style="margin: 0px 5px;">É Direcional</p>
+                        </div>
+                        <button id="ModalAdicionarArestaBotao">Salvar</button>
+                    </div>
                 </div>
             </div>
         </div>

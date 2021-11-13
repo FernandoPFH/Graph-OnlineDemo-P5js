@@ -20,6 +20,12 @@ function setup() {
 
     document.getElementsByClassName("p5Canvas")[0].onclick = () => {mouseClicadoNoCanvas();}
 
+    document.getElementsByClassName("Modal").forEach(elemento => {
+        elemento.onclick = (event) => {
+            event.stopPropagation();
+        }
+    });
+
     grafo = new Grafo("",[],[]);
 
     estadoAtual = new Estado("NoMenu");
@@ -46,9 +52,9 @@ function draw() {
 // Função Chamada Quando Um Botão Do Mouse É Clicado No canvas
 function mouseClicadoNoCanvas() {
     if (estadoAtual.compararEscolha("AdicionarVertice")) {
-        abrirModalAdicionarNomeVertice(createVector(mouseX,mouseY),grafo);
         ultimoEstado = estadoAtual.pegarEscolha();
         estadoAtual.trocaEscolha("NoMenu");
+        abrirModalAdicionarNomeVertice(createVector(mouseX,mouseY),grafo);
     } else if (estadoAtual.compararEscolha("ExcluirObjetos")) {
         grafo.vertices.forEach(vertice => {
             if (vertice.mouseEstaEmCima(mouseX,mouseY)) {
@@ -68,13 +74,12 @@ function mouseClicadoNoCanvas() {
                     vertice.selecionado = true;
                     pontoClicadoParaCriacaoDeAresta = vertice;
                 } else {
-                    grafo.adicionarAresta(new Aresta(pontoClicadoParaCriacaoDeAresta,vertice,true));
-
-                    pontoClicadoParaCriacaoDeAresta.selecionado = false;
-                    pontoClicadoParaCriacaoDeAresta = null;
+                    ultimoEstado = estadoAtual.pegarEscolha();
+                    estadoAtual.trocaEscolha("NoMenu");
+                    abrirModalAdicionarAresta(pontoClicadoParaCriacaoDeAresta,vertice,grafo);
                 }
             }
-        })
+        });
     }
 }
 
@@ -104,8 +109,10 @@ function mouseReleased() {
 // Tira O Ponto Selecionado Se O Botão ESC É Precionado
 function keyPressed() {
     if (keyCode === ESCAPE) {
-        pontoClicadoParaCriacaoDeAresta.selecionado = false;
-        pontoClicadoParaCriacaoDeAresta = null;
+        if (pontoClicadoParaCriacaoDeAresta) {
+            pontoClicadoParaCriacaoDeAresta.selecionado = false;
+            pontoClicadoParaCriacaoDeAresta = null;
+        }
     }
 }
 
