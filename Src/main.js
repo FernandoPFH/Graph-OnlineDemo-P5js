@@ -111,6 +111,13 @@ function keyPressed() {
 
 // Troca O Tamanho Do Canvas Quando O Tamanho Da Tela É Mudado
 function windowResized() {
+    grafo.vertices.forEach(vertice => {
+        let novaPosicaoXDoVertice = (vertice.posicao.x - 0) * (windowWidth - 0) / (tamanhoAtualCanvas.x - 0) + 0;
+        let novaPosicaoYDoVertice = (vertice.posicao.y - 0) * (windowHeight - 0) / (tamanhoAtualCanvas.y - 0) + 0;
+
+        vertice.posicao = createVector(novaPosicaoXDoVertice,novaPosicaoYDoVertice);
+    });
+
     tamanhoAtualCanvas = createVector(windowWidth, windowHeight);
 
     resizeCanvas(windowWidth, windowHeight);
