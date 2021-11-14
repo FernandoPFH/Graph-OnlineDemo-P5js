@@ -82,7 +82,7 @@ function setup() {
     corDoCirculoDoVertice=color(255);
     tamanhoDoTextoDoVertice=15;
     corDoTextoDoVertice=color(0);
-    corDaLinhaDaAresta=color(0);
+    corDaLinhaDaAresta=color(68,255,0);
     grossuraDaLinhaDaAresta=1;
 
     document.getElementsByClassName("p5Canvas")[0].onclick = () => {mouseClicadoNoCanvas();}

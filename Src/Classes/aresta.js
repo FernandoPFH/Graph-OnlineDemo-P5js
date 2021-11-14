@@ -146,6 +146,7 @@ class Aresta {
             }
     
             stroke(corDaLinha);
+            fill(corDaLinha);
             strokeWeight(grossuraDaLinha);
     
             line(
