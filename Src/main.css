@@ -29,6 +29,8 @@ canvas {
 
 .Botao-Flutuante {
     margin-left: 10px;
+    cursor: pointer;
+    user-select: none;
 }
 
 .Menu-Lateral {
@@ -61,6 +63,8 @@ canvas {
     position: absolute;
     right:25px;
     top:22px;
+    cursor: pointer;
+    user-select: none;
 }
 
 .Escolhas-De-Informacoes {
@@ -75,6 +79,8 @@ canvas {
     align-items: center;
     border: 1px solid black;
     border-radius: 5%;
+    cursor: pointer;
+    user-select: none;
 }
 
 .Selecionado {
@@ -128,6 +134,36 @@ canvas {
 }
 .Lista-De-Informacoes li:hover {
     cursor: pointer;
+}
+
+.Configuracao {
+    width: 100%;
+    height: 100%;
+}
+
+.Configuracao h2{
+    margin: 0px;
+}
+
+.Configuracao h3{
+    margin: 0px;
+    margin-left: 20px;
+}
+.Linha-De-Configuracao {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px;
+}
+
+.BotaoDeBaixarGrafo {
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+}
+
+.BotaoDeBaixarGrafo button{
+    font-size: 25px;
 }
 
 .Modal-Background {

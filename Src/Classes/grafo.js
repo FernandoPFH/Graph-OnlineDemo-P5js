@@ -171,13 +171,14 @@ class Grafo {
     }
 
     // Desenhar O Grafo
-    desenhar() {
+    desenhar(tamanhoDoCirculo=25,corDoCirculo=color(255),corDoTexto=color(0),tamanhoDoTexto=15,corDaLinha=color(0),grossuraDaLinha=1) {
         this.arestas.forEach(aresta => {
-            aresta.desenhar();
+            aresta.desenhar(tamanhoDoCirculo,corDaLinha,grossuraDaLinha);
         });
 
         this.vertices.forEach(vertice => {
-            vertice.desenhar();
+            vertice.tamanhoDoTexto = tamanhoDoTexto;
+            vertice.desenhar(corDoCirculo,tamanhoDoCirculo,corDoTexto,tamanhoDoTexto);
         });
     }
 }

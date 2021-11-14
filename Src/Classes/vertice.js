@@ -11,6 +11,8 @@ class Vertice {
         this.temArestasAdjacentesParalelas;
         this.vizinhanca;
 
+        this.tamanhoDoTexto = 15;
+
         this.atualizarArestas();
     }
 
@@ -112,7 +114,7 @@ class Vertice {
     }
 
     // Desenhar O Vertice
-    desenhar(corDoCirculo=color(255),tamanhoDoCirculo=25,corDoTexto=color(0),tamanhoDoTexto=15) {
+    desenhar(corDoCirculo=color(255),tamanhoDoCirculo=25,corDoTexto=color(0)) {
         // Volta A Grossura Das Linhas Para O Padrão
         strokeWeight();
 
@@ -134,21 +136,21 @@ class Vertice {
 
         stroke(corDoTexto);
         fill(corDoTexto);
-        textSize(tamanhoDoTexto);
+        textSize(this.tamanhoDoTexto);
         // Checar Se Deve Desenhar Texto
         if (textWidth(this.nome) < tamanhoDoCirculo - 1) {
             // Desenha O Texto Do Vertice
             text(
                 this.nome,
-                this.posicao.x-tamanhoDoTexto*this.nome.length/3,
-                this.posicao.y+tamanhoDoTexto/3
+                this.posicao.x-this.tamanhoDoTexto*this.nome.length/3,
+                this.posicao.y+this.tamanhoDoTexto/3
             );
         } else {
             // Desenha O Texto Do Vertice
             text(
                 "...",
-                this.posicao.x-tamanhoDoTexto/3,
-                this.posicao.y+tamanhoDoTexto/3
+                this.posicao.x-this.tamanhoDoTexto/3,
+                this.posicao.y+this.tamanhoDoTexto/3
             );
         }
     }

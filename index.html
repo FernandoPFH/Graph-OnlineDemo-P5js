@@ -31,16 +31,16 @@
             </button>
         </div>
         <div class="Grupo-De-Botoes-Flutuantes">
-            <div class="Botao-Flutuante" onclick="abrirMenuLateral()">
+            <div class="Botao-Flutuante" onclick="abrirMenuLateralDeInformacoes()">
                 <i class="fas fa-info-circle"></i>
             </div>
-            <div class="Botao-Flutuante">
+            <div class="Botao-Flutuante" onclick="abrirMenuLateralDeConfiguracoes()">
                 <i class="fas fa-cog"></i>
             </div>
         </div>
-        <div class="Menu-Lateral" id="MenuLateral">
+        <div class="Menu-Lateral" id="MenuLateralDeInformacoes">
             <h1>Informações:</h1>
-            <div onclick="fecharMenuLateral()">
+            <div onclick="fecharMenuLateralDeInformacoes()">
                 <span class="Botao-Fechar-Menu-Lateral">X</span>
             </div>
             <div class="Escolhas-De-Informacoes">
@@ -122,6 +122,45 @@
                     </ul>
                 </div>
             </div>
+        </div><div class="Menu-Lateral" id="MenuLateralDeConfiguracoes">
+            <h1>Configurações:</h1>
+            <div onclick="fecharMenuLateralDeConfiguracoes()">
+                <span class="Botao-Fechar-Menu-Lateral">X</span>
+            </div>
+            <div class="Configuracao">
+                <h2>Vértice:</h2>
+                <div class="Linha-De-Configuracao">
+                    <h3>Tamanho:</h3>
+                    <input type="range" id="VerticeTamanho" value="25" min="1">
+                    <h3 id="VerticeTamanhoMostragem" style="margin: 3px;"></h3>
+                </div>
+                <div class="Linha-De-Configuracao">
+                    <h3>Cor:</h3>
+                    <input type="color" value="#ffffff" id="VerticeCor">
+                </div>
+                <div class="Linha-De-Configuracao">
+                    <h3>Tamanho - Texto:</h3>
+                    <input type="range" id="VerticeTamanhoTexto" value="15" min="1">
+                    <h3 id="VerticeTamanhoTextoMostragem" style="margin: 3px;"></h3>
+                </div>
+                <div class="Linha-De-Configuracao">
+                    <h3>Cor - Texto:</h3>
+                    <input type="color" value="#000000" id="VerticeCorTexto">
+                </div>
+                <h2>Aresta:</h2>
+                <div class="Linha-De-Configuracao">
+                    <h3>Grossura:</h3>
+                    <input type="range" id="ArestaGrossura" value="1" min="1">
+                    <h3 id="ArestaGrossuraMostragem" style="margin: 3px;"></h3>
+                </div>
+                <div class="Linha-De-Configuracao">
+                    <h3>Cor:</h3>
+                    <input type="color" value="#000000" id="ArestaCor">
+                </div>
+                <div class="BotaoDeBaixarGrafo">
+                    <button onclick="baixarImagemDoCanvas()">Baixar</button>
+                </div>
+            </div>
         </div>
         <div class="Modal-Background" onclick="fecharModalAdicionarNomeVertice()" id="ModalBackgroundAdicionarNomeVertice">
             <div class="Modal">
@@ -137,7 +176,7 @@
             </div>
         </div>
         <div class="Modal-Background" onclick="fecharModalAdicionarAresta()" id="ModalBackgroundAdicionarAresta">
-            <div class="Modal" onclick="() => {console.log('teste')}">
+            <div class="Modal">
                 <div class="Modal-Conteudo">
                     <div class="Modal-Titulo">
                         <h1>Adicionar Nome Do Vertice:</h1>

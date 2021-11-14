@@ -101,13 +101,23 @@ function botaoExcluirObjetos(referencia) {
 }
 
 // Abre O Menu Lateral De Informações
-function abrirMenuLateral() {
-    document.getElementById("MenuLateral").style.display = "flex";
+function abrirMenuLateralDeInformacoes() {
+    document.getElementById("MenuLateralDeInformacoes").style.display = "flex";
 }
 
 // Fecha O Menu Lateral De Informações
-function fecharMenuLateral() {
-    document.getElementById("MenuLateral").style.display = "none";
+function fecharMenuLateralDeInformacoes() {
+    document.getElementById("MenuLateralDeInformacoes").style.display = "none";
+}
+
+// Abre O Menu Lateral De Configurações
+function abrirMenuLateralDeConfiguracoes() {
+    document.getElementById("MenuLateralDeConfiguracoes").style.display = "flex";
+}
+
+// Fecha O Menu Lateral De Configurações
+function fecharMenuLateralDeConfiguracoes() {
+    document.getElementById("MenuLateralDeConfiguracoes").style.display = "none";
 }
 
 // Abrir Menu De Informações Do Grafo
@@ -146,4 +156,17 @@ function encaminharParaInformacaoDoVertice(posicaoDoVertice) {
     document.getElementById("ListaDeVerticesParaSelecionar").value = posicaoDoVertice;
 
     grafo.vertices[posicaoDoVertice].atualizarMenuDeInformacoes();
+}
+
+// Converte O Canvas Em PNG E Baixa O Arquivo
+function baixarImagemDoCanvas() {
+    let canvas = document.getElementsByClassName("p5Canvas")[0];
+
+    const tagA = document.createElement("a");
+
+    document.body.appendChild(tagA);
+    tagA.href = canvas.toDataURL();
+    tagA.download = "Grafo.png";
+    tagA.click();
+    document.body.removeChild(tagA);
 }

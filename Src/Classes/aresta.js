@@ -89,8 +89,8 @@ class Aresta {
     }
 
     // Checa Se O Mouse Está Em Cima Do Vertice
-    mouseEstaEmCima(mouseX,mouseY) {
-        let verticesDoRetanguloDeInteracao = this.retanguloDeInteracao();
+    mouseEstaEmCima(mouseX,mouseY,tamanhoDoCirculo=25) {
+        let verticesDoRetanguloDeInteracao = this.retanguloDeInteracao(tamanhoDoCirculo);
         let pontoDoMouse = createVector(mouseX,mouseY);
 
         let areasEmRelacaoAoPontoDoMouse = [];
@@ -109,7 +109,7 @@ class Aresta {
     }
 
     // Desenhar A Aresta
-    desenhar(tamanhoDoCirculo=25,corDaLinha=0,grossuraDaLinha=1) {
+    desenhar(tamanhoDoCirculo=25,corDaLinha=color(0),grossuraDaLinha=1) {
         if (!this.eLoop) {
             let vetorEntreOsPontos = createVector(
                 this.extremidades[1].posicao.x-this.extremidades[0].posicao.x,
