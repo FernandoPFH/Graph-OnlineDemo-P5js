@@ -17,6 +17,119 @@ canvas {
     user-select: none;
 }
 
+.Grupo-De-Botoes-Flutuantes {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    z-index: 1;
+    display: flex;
+    font-size: 30px;
+    color: white;
+}
+
+.Botao-Flutuante {
+    margin-left: 10px;
+}
+
+.Menu-Lateral {
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    height: 93%;
+    width: 350px;
+    z-index: 2;
+    background-color: white;
+    opacity: 100%;
+    border-radius: 5%;
+    padding: 1%;
+    margin: auto;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Menu-Lateral h1 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.Esconder-CheckMark {
+    display: none;
+}
+
+.Botao-Fechar-Menu-Lateral {
+    position: absolute;
+    right:25px;
+    top:22px;
+}
+
+.Escolhas-De-Informacoes {
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.Escolha-De-Informacao {
+    width: 100%;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5%;
+}
+
+.Selecionado {
+    background-color: blue;
+    color: white;
+}
+
+.Escolha-De-Informacao p {
+    text-align: center;
+    margin: 5px;
+}
+
+.Informacoes-Grafo {
+    width: 100%;
+    display: none;
+}
+
+.Informacoes-Vertice {
+    width: 100%;
+    display: none;
+}
+
+.Informacao-Selecinada {
+    display: block;
+}
+
+.Linha-De-Informacao {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px;
+    justify-content: center;
+}
+
+.Linha-De-Informacao h2 {
+    margin: 0px;
+    margin-right: 5px;
+}
+
+.Linha-De-Informacao select{
+    width: 100%;
+}
+
+.Lista-De-Informacoes {
+    width: 100%;
+    margin-left: 10px;
+}
+
+.Lista-De-Informacoes h2 {
+    margin: 0px;
+}
+.Lista-De-Informacoes li:hover {
+    cursor: pointer;
+}
+
 .Modal-Background {
     display: none;
     position: absolute;
@@ -58,5 +171,17 @@ canvas {
 
 .Botao-Selecionado {
     color: white;
+    border-color: blue;
     background-color: blue;
+}
+
+ul {
+    margin: 2px;
+}
+
+.Vertice-Para-Pegar-Informacao {
+    margin: 2px;
+    color: blue;
+    font-weight: bold;
+    text-decoration: underline;
 }

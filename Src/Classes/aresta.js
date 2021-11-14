@@ -4,9 +4,13 @@ class Aresta {
         this.eDirecional = eDirecional;
         this.eLoop = primeiroVertice == segundoVertice;
 
-        this.extremidades.forEach(extremidade => {
-            extremidade.adicionarAresta(this);
-        });
+        if (primeiroVertice != segundoVertice) {
+            this.extremidades.forEach(extremidade => {
+                extremidade.adicionarAresta(this);
+            });
+        } else {
+            primeiroVertice.adicionarAresta(this);
+        }
     }
 
     eVizinho(primeiroVertice,segundoVertice) {
@@ -106,86 +110,100 @@ class Aresta {
 
     // Desenhar A Aresta
     desenhar(tamanhoDoCirculo=25,corDaLinha=0,grossuraDaLinha=1) {
-
-        let vetorEntreOsPontos = createVector(
-            this.extremidades[1].posicao.x-this.extremidades[0].posicao.x,
-            this.extremidades[1].posicao.y-this.extremidades[0].posicao.y
-        );
-
-        let tamanhoVetor = Math.sqrt(vetorEntreOsPontos.x**2 + vetorEntreOsPontos.y**2);
-
-        let anguloVetor = Math.asin(vetorEntreOsPontos.x/tamanhoVetor);
-
-        let pontoInicialDaAresta;
-        let pontoFinalDaAresta;
-
-        if (this.extremidades[0].posicao.y <= this.extremidades[1].posicao.y) {
-            pontoInicialDaAresta = createVector(
-                this.extremidades[0].posicao.x + Math.sin(anguloVetor)*tamanhoDoCirculo/2,
-                this.extremidades[0].posicao.y + Math.cos(anguloVetor)*tamanhoDoCirculo/2
+        if (!this.eLoop) {
+            let vetorEntreOsPontos = createVector(
+                this.extremidades[1].posicao.x-this.extremidades[0].posicao.x,
+                this.extremidades[1].posicao.y-this.extremidades[0].posicao.y
             );
     
-            pontoFinalDaAresta = createVector(
-                this.extremidades[1].posicao.x - Math.sin(anguloVetor)*tamanhoDoCirculo/2,
-                this.extremidades[1].posicao.y - Math.cos(anguloVetor)*tamanhoDoCirculo/2
-            );
-        } else {
-            pontoInicialDaAresta = createVector(
-                this.extremidades[0].posicao.x + Math.sin(anguloVetor)*tamanhoDoCirculo/2,
-                this.extremidades[0].posicao.y - Math.cos(anguloVetor)*tamanhoDoCirculo/2
-            );
+            let tamanhoVetor = Math.sqrt(vetorEntreOsPontos.x**2 + vetorEntreOsPontos.y**2);
     
-            pontoFinalDaAresta = createVector(
-                this.extremidades[1].posicao.x - Math.sin(anguloVetor)*tamanhoDoCirculo/2,
-                this.extremidades[1].posicao.y + Math.cos(anguloVetor)*tamanhoDoCirculo/2
-            );
-        }
-
-        stroke(corDaLinha);
-        strokeWeight(grossuraDaLinha);
-
-        line(
-            pontoInicialDaAresta.x,
-            pontoInicialDaAresta.y,
-            pontoFinalDaAresta.x,
-            pontoFinalDaAresta.y
-        );
-
-        if (this.eDirecional) {
-            let anguloPerpendicularAoVetor = anguloVetor + Math.PI/2;
-            
-            let pontoUmDeBaseDoTriangulo;
-            let pontoDoisDeBaseDoTriangulo;
-
+            let anguloVetor = Math.asin(vetorEntreOsPontos.x/tamanhoVetor);
+    
+            let pontoInicialDaAresta;
+            let pontoFinalDaAresta;
+    
             if (this.extremidades[0].posicao.y <= this.extremidades[1].posicao.y) {
-                pontoUmDeBaseDoTriangulo = createVector(
-                    pontoFinalDaAresta.x - Math.sin(anguloVetor) * 9 + Math.sin(anguloPerpendicularAoVetor) * 9,
-                    pontoFinalDaAresta.y - Math.cos(anguloVetor) * 9 + Math.cos(anguloPerpendicularAoVetor) * 9
+                pontoInicialDaAresta = createVector(
+                    this.extremidades[0].posicao.x + Math.sin(anguloVetor)*tamanhoDoCirculo/2,
+                    this.extremidades[0].posicao.y + Math.cos(anguloVetor)*tamanhoDoCirculo/2
                 );
-                
-                pontoDoisDeBaseDoTriangulo = createVector(
-                    pontoFinalDaAresta.x - Math.sin(anguloVetor) * 9 - Math.sin(anguloPerpendicularAoVetor) * 9,
-                    pontoFinalDaAresta.y - Math.cos(anguloVetor) * 9 - Math.cos(anguloPerpendicularAoVetor) * 9
+        
+                pontoFinalDaAresta = createVector(
+                    this.extremidades[1].posicao.x - Math.sin(anguloVetor)*tamanhoDoCirculo/2,
+                    this.extremidades[1].posicao.y - Math.cos(anguloVetor)*tamanhoDoCirculo/2
                 );
             } else {
-                pontoUmDeBaseDoTriangulo = createVector(
-                    pontoFinalDaAresta.x + Math.sin(-anguloVetor) * 9 + Math.sin(anguloPerpendicularAoVetor) * 9,
-                    pontoFinalDaAresta.y + Math.cos(-anguloVetor) * 9 - Math.cos(anguloPerpendicularAoVetor) * 9
+                pontoInicialDaAresta = createVector(
+                    this.extremidades[0].posicao.x + Math.sin(anguloVetor)*tamanhoDoCirculo/2,
+                    this.extremidades[0].posicao.y - Math.cos(anguloVetor)*tamanhoDoCirculo/2
                 );
-                
-                pontoDoisDeBaseDoTriangulo = createVector(
-                    pontoFinalDaAresta.x + Math.sin(-anguloVetor) * 9 - Math.sin(anguloPerpendicularAoVetor) * 9,
-                    pontoFinalDaAresta.y + Math.cos(-anguloVetor) * 9 + Math.cos(anguloPerpendicularAoVetor) * 9
+        
+                pontoFinalDaAresta = createVector(
+                    this.extremidades[1].posicao.x - Math.sin(anguloVetor)*tamanhoDoCirculo/2,
+                    this.extremidades[1].posicao.y + Math.cos(anguloVetor)*tamanhoDoCirculo/2
                 );
             }
-
-            triangle(
+    
+            stroke(corDaLinha);
+            strokeWeight(grossuraDaLinha);
+    
+            line(
+                pontoInicialDaAresta.x,
+                pontoInicialDaAresta.y,
                 pontoFinalDaAresta.x,
-                pontoFinalDaAresta.y,
-                pontoDoisDeBaseDoTriangulo.x,
-                pontoDoisDeBaseDoTriangulo.y,
-                pontoUmDeBaseDoTriangulo.x,
-                pontoUmDeBaseDoTriangulo.y
+                pontoFinalDaAresta.y
+            );
+    
+            if (this.eDirecional) {
+                let anguloPerpendicularAoVetor = anguloVetor + Math.PI/2;
+                
+                let pontoUmDeBaseDoTriangulo;
+                let pontoDoisDeBaseDoTriangulo;
+    
+                if (this.extremidades[0].posicao.y <= this.extremidades[1].posicao.y) {
+                    pontoUmDeBaseDoTriangulo = createVector(
+                        pontoFinalDaAresta.x - Math.sin(anguloVetor) * 9 + Math.sin(anguloPerpendicularAoVetor) * 9,
+                        pontoFinalDaAresta.y - Math.cos(anguloVetor) * 9 + Math.cos(anguloPerpendicularAoVetor) * 9
+                    );
+                    
+                    pontoDoisDeBaseDoTriangulo = createVector(
+                        pontoFinalDaAresta.x - Math.sin(anguloVetor) * 9 - Math.sin(anguloPerpendicularAoVetor) * 9,
+                        pontoFinalDaAresta.y - Math.cos(anguloVetor) * 9 - Math.cos(anguloPerpendicularAoVetor) * 9
+                    );
+                } else {
+                    pontoUmDeBaseDoTriangulo = createVector(
+                        pontoFinalDaAresta.x + Math.sin(-anguloVetor) * 9 + Math.sin(anguloPerpendicularAoVetor) * 9,
+                        pontoFinalDaAresta.y + Math.cos(-anguloVetor) * 9 - Math.cos(anguloPerpendicularAoVetor) * 9
+                    );
+                    
+                    pontoDoisDeBaseDoTriangulo = createVector(
+                        pontoFinalDaAresta.x + Math.sin(-anguloVetor) * 9 - Math.sin(anguloPerpendicularAoVetor) * 9,
+                        pontoFinalDaAresta.y + Math.cos(-anguloVetor) * 9 + Math.cos(anguloPerpendicularAoVetor) * 9
+                    );
+                }
+    
+                triangle(
+                    pontoFinalDaAresta.x,
+                    pontoFinalDaAresta.y,
+                    pontoDoisDeBaseDoTriangulo.x,
+                    pontoDoisDeBaseDoTriangulo.y,
+                    pontoUmDeBaseDoTriangulo.x,
+                    pontoUmDeBaseDoTriangulo.y
+                );
+            }
+        } else {
+            noFill();
+            strokeWeight(1);
+            bezier(
+                this.extremidades[0].posicao.x,
+                this.extremidades[0].posicao.y,
+                this.extremidades[0].posicao.x + 40,
+                this.extremidades[0].posicao.y - 80,
+                this.extremidades[0].posicao.x - 40,
+                this.extremidades[0].posicao.y - 80,
+                this.extremidades[0].posicao.x,
+                this.extremidades[0].posicao.y,
             );
         }
     }

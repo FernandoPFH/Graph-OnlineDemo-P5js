@@ -38,23 +38,71 @@ class Vertice {
         this.vizinhanca = new Set();
 
         this.temLoop = false;
-        let indiceDeLoop = 0;
+
         this.temArestasAdjacentesParalelas = false;
         this.arestas.forEach(aresta => {
             if (aresta.eLoop) {
                 this.temLoop = true;
             }
 
-            if (this.arestas.indexOf(aresta) != indiceDeLoop && this.arestas.indexOf(aresta) > -1) {
-                this.temArestasAdjacentesParalelas = true;
-            }
-
             aresta.extremidades.forEach(extremidade => {
                 if (extremidade != this) {
+                    if (this.vizinhanca.has(extremidade)) {
+                        this.temArestasAdjacentesParalelas = true;
+                    }
+
                     this.vizinhanca.add(extremidade);
                 }
             });
-            indiceDeLoop++;
+        });
+    }
+
+    // Atualiza As Informações Do Grafo No Menu Lateral De Informações
+    atualizarMenuDeInformacoes() {
+        document.getElementById("Vertice-Informacao-Posicao-X").innerHTML = parseInt(this.posicao.x);
+        document.getElementById("Vertice-Informacao-Posicao-Y").innerHTML = parseInt(this.posicao.y);
+
+        document.getElementById("Vertice-Informacao-Arestas").innerHTML = this.arestas.length;
+
+        document.getElementById("Vertice-Informacao-Grau").innerHTML = this.grau;
+
+        if (this.ePar) {
+            document.getElementById("Vertice-Informacao-Par").classList.remove("Esconder-CheckMark");
+        } else {
+            document.getElementById("Vertice-Informacao-Par").classList.add("Esconder-CheckMark");
+        }
+
+        if (this.eIsolado) {
+            document.getElementById("Vertice-Informacao-Isolado").classList.remove("Esconder-CheckMark");
+        } else {
+            document.getElementById("Vertice-Informacao-Isolado").classList.add("Esconder-CheckMark");
+        }
+
+        if (this.temLoop) {
+            document.getElementById("Vertice-Informacao-Loop").classList.remove("Esconder-CheckMark");
+        } else {
+            document.getElementById("Vertice-Informacao-Loop").classList.add("Esconder-CheckMark");
+        }
+
+        if (this.temArestasAdjacentesParalelas) {
+            document.getElementById("Vertice-Informacao-Arestas-Paralelas").classList.remove("Esconder-CheckMark");
+        } else {
+            document.getElementById("Vertice-Informacao-Arestas-Paralelas").classList.add("Esconder-CheckMark");
+        }
+
+        document.getElementById("ListaDaVizinhanca").innerHTML = "";
+        this.vizinhanca.forEach(vizinho => {
+            let elementoParaAdicionar = document.createElement("li");
+
+            elementoParaAdicionar.onclick = () => {encaminharParaInformacaoDoVertice(grafo.vertices.indexOf(vizinho))}
+
+            let pTag = document.createElement("p");
+            pTag.classList.add("Vertice-Para-Pegar-Informacao");
+            pTag.innerHTML = vizinho.nome;
+
+            elementoParaAdicionar.appendChild(pTag);
+
+            document.getElementById("ListaDaVizinhanca").appendChild(elementoParaAdicionar);
         });
     }
 
@@ -88,7 +136,7 @@ class Vertice {
         fill(corDoTexto);
         textSize(tamanhoDoTexto);
         // Checar Se Deve Desenhar Texto
-        if (textWidth(this.nome) < tamanhoDoCirculo) {
+        if (textWidth(this.nome) < tamanhoDoCirculo - 1) {
             // Desenha O Texto Do Vertice
             text(
                 this.nome,

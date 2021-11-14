@@ -99,3 +99,51 @@ function botaoExcluirObjetos(referencia) {
     resetarCorDosBotoes(referencia);
     referencia.classList.add("Botao-Selecionado");
 }
+
+// Abre O Menu Lateral De Informações
+function abrirMenuLateral() {
+    document.getElementById("MenuLateral").style.display = "flex";
+}
+
+// Fecha O Menu Lateral De Informações
+function fecharMenuLateral() {
+    document.getElementById("MenuLateral").style.display = "none";
+}
+
+// Abrir Menu De Informações Do Grafo
+function abrirMenuDeInformacoesDeGrafo(elemento) {
+    elemento.classList.add("Selecionado");
+    elemento.parentElement.children[1].classList.remove("Selecionado");
+
+    document.getElementById("Informacoes-Vertice").classList.remove("Informacao-Selecinada");
+    document.getElementById("Informacoes-Grafo").classList.add("Informacao-Selecinada");
+}
+
+// Abrir Menu De Informações De Vértice
+function abrirMenuDeInformacoesDeVertice(elemento) {
+    elemento.classList.add("Selecionado");
+    elemento.parentElement.children[0].classList.remove("Selecionado");
+
+    document.getElementById("Informacoes-Grafo").classList.remove("Informacao-Selecinada");
+    document.getElementById("Informacoes-Vertice").classList.add("Informacao-Selecinada");
+
+    grafo.vertices[0].atualizarMenuDeInformacoes();
+}
+
+// Mudança De Escolha De Vértice No Menu De Informacao
+function mudancaDeEscolhaDeVerticeNoMenuDeInformacao(valor=null) {
+    if (!valor) {
+        grafo.vertices[parseInt(document.getElementById("ListaDeVerticesParaSelecionar").value)].atualizarMenuDeInformacoes();
+    } else {
+        grafo.vertices[valor].atualizarMenuDeInformacoes();
+    }
+}
+
+// Encaminha O Usuário Para A Página De Informações Do Vértice Para Um Vértice Específico
+function encaminharParaInformacaoDoVertice(posicaoDoVertice) {
+    abrirMenuDeInformacoesDeVertice(document.getElementById("Escolha-De-Informacao-Vertice"));
+
+    document.getElementById("ListaDeVerticesParaSelecionar").value = posicaoDoVertice;
+
+    grafo.vertices[posicaoDoVertice].atualizarMenuDeInformacoes();
+}

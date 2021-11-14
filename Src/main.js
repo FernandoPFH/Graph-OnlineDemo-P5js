@@ -26,7 +26,7 @@ function setup() {
         }
     });
 
-    grafo = new Grafo("",[],[]);
+    grafo = new Grafo("Grafo",[],[]);
 
     estadoAtual = new Estado("NoMenu");
 }

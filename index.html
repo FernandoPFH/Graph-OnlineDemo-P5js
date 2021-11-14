@@ -1,6 +1,7 @@
 <html>
     <head>
         <script src="Bibliotecas/p5.min.js"></script>
+        <script defer src="Bibliotecas/fontawesome/js/all.min.js"></script>
         <script src="Src/Classes/vertice.js"></script>
         <script src="Src/Classes/aresta.js"></script>
         <script src="Src/Classes/grafo.js"></script>
@@ -28,6 +29,99 @@
             <button onclick="botaoExcluirObjetos(this)">
                 Excluir Objetos
             </button>
+        </div>
+        <div class="Grupo-De-Botoes-Flutuantes">
+            <div class="Botao-Flutuante" onclick="abrirMenuLateral()">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="Botao-Flutuante">
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+        <div class="Menu-Lateral" id="MenuLateral">
+            <h1>Informações:</h1>
+            <div onclick="fecharMenuLateral()">
+                <span class="Botao-Fechar-Menu-Lateral">X</span>
+            </div>
+            <div class="Escolhas-De-Informacoes">
+                <div class="Escolha-De-Informacao Selecionado" id="Escolha-De-Informacao-Grafo" onclick="abrirMenuDeInformacoesDeGrafo(this)">
+                    <p>Grafo</p>
+                </div>
+                <div class="Escolha-De-Informacao" id="Escolha-De-Informacao-Vertice" style="margin-left: 2px;" onclick="abrirMenuDeInformacoesDeVertice(this)">
+                    <p>Vértice</p>
+                </div>
+            </div>
+            <div class="Informacoes-Grafo Informacao-Selecinada" id="Informacoes-Grafo">
+                <div class="Linha-De-Informacao">
+                    <h2>Nulo:</h2>
+                    <div id="Grafo-Informacao-Nulo"><i class="fas fa-check" ></i></div>
+                </div>
+                <div class="Linha-De-Informacao" >
+                    <h2>Simples:</h2>
+                    <div id="Grafo-Informacao-Simples"><i class="fas fa-check" ></i></div>
+                </div>
+                <div class="Linha-De-Informacao">
+                    <h2>Regular:</h2>
+                    <div id="Grafo-Informacao-Regular"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="Linha-De-Informacao">
+                    <h2>Completo:</h2>
+                    <div id="Grafo-Informacao-Completo"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="Linha-De-Informacao">
+                    <h2>Euleriano:</h2>
+                    <div id="Grafo-Informacao-Euleriano"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="Linha-De-Informacao">
+                    <h2>Arestas:</h2>
+                    <h2 id="Grafo-Informacao-Arestas"></h2>
+                </div>
+                <div class="Lista-De-Informacoes">
+                    <h2>Vértices:</h2>
+                    <ul id="ListaDeVertices">
+                    </ul>
+                </div>
+            </div>
+            <div class="Informacoes-Vertice" id="Informacoes-Vertice">
+                <div class="Linha-De-Informacao">
+                    <select id="ListaDeVerticesParaSelecionar" onchange="mudancaDeEscolhaDeVerticeNoMenuDeInformacao()">
+                    </select>
+                </div>
+                <div class="Linha-De-Informacao">
+                    <h2>Posição:</h2>
+                    <h2>X: </h2><h2 id="Vertice-Informacao-Posicao-X"></h2>
+                    <h2>Y: </h2><h2 id="Vertice-Informacao-Posicao-Y"></h2>
+                </div>
+                <div class="Linha-De-Informacao">
+                    <h2>Arestas:</h2>
+                    <h2 id="Vertice-Informacao-Arestas"></h2>
+                </div>
+                <div class="Linha-De-Informacao">
+                    <h2>Grau:</h2>
+                    <h2 id="Vertice-Informacao-Grau"></h2>
+                </div>
+                <div class="Linha-De-Informacao">
+                    <h2>Par:</h2>
+                    <div id="Vertice-Informacao-Par"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="Linha-De-Informacao">
+                    <h2>Isolado:</h2>
+                    <div id="Vertice-Informacao-Isolado"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="Linha-De-Informacao">
+                    <h2>Tem Loop:</h2>
+                    <div id="Vertice-Informacao-Loop"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="Linha-De-Informacao">
+                    <h2>Tem Arestas Paralelas:</h2>
+                    <div id="Vertice-Informacao-Arestas-Paralelas"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="Lista-De-Informacoes">
+                    <h2>Vizinhança:</h2>
+                    <ul id="ListaDaVizinhanca">
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="Modal-Background" onclick="fecharModalAdicionarNomeVertice()" id="ModalBackgroundAdicionarNomeVertice">
             <div class="Modal">
